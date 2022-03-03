@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <span>Total click: 0</span>
+        <button id="btn">Click me </button>
+    </body>
+    <script>
+        // 변수를 만들고, 바디 태그를 잡고, 함수를 만들고, 핸들러로 연동시켜야 함.
+        let cnt = 0;
+
+        const button = document.querySelector('button');
+        const span = document.querySelector('span');
+
+        function handleClick(){
+            cnt++ ;
+            span.innerText = `Total click: ${cnt}`;
+        }
+        
+        button.addEventListener('click',handleClick);
+    </script>
+</html>
