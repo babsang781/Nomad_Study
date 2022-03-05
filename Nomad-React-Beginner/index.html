@@ -9,16 +9,23 @@
         src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
     <script>
         const root = document.getElementById("root");
-        const h3 = React.createElement("h3", 
+        
+        Const button = <h3 id="h3>"Hello I'm a span"</h3>;9
+
+
+
+       /* const h3 = React.createElement("h3", 
         {
             onMouseEnter: () => console.log("Mouse entered here!"),
         }, 
         "Hello I'm a span");
+
         const btn = React.createElement("button", 
         {
             onClick: () => console.log("I'm clicked! "),
         }, 
-        "Click me");
+        "Click me"); */
+
         const container = React.createElement("div",null, [h3, btn]);
         ReactDOM.render(container, root);
     </script>
