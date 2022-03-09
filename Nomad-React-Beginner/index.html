@@ -10,33 +10,25 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type ="text/babel">
         const root = document.getElementById("root");
-        
-        const Title = (
+        const Title = () => (
             <h3 id="title" onMouseEnter={() => console.log("mouse entered here")}>
             Hello I'm a title</h3>
         );
-        const Button = (
+        // function Button(){
+        //      return(
+        const Button = () => (
             <button style={{backgroundColor:"orange",}} 
             onClick={() => console.log("I'm clicked! ")}>
             Click me</button>
             );
         
-        const container = React.createElement("div",null, [Title, Button]);
-        ReactDOM.render(container, root);
-
-
-       /* const h3 = React.createElement("h3", 
-        {
-            onMouseEnter: () => console.log("Mouse entered here!"),
-        }, 
-        "Hello I'm a span");
-
-        const btn = React.createElement("button", 
-        {
-            onClick: () => console.log("I'm clicked! "),
-        }, 
-        "Click me"); */
-
+        const Container = () => (
+            <div>
+                <Title />
+                <Button />
+            </div>                
+        );
+        ReactDOM.render(<Container/>, root);
     </script>
 
 </html>
