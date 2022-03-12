@@ -1,41 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <body>
-        <div id="root"></div>
+<body>
+    <div id="root"></div>
 
-    </body>
-    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
-    <script
-        src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script type ="text/babel">
+</body>
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
 
-        const root = document.getElementById("root");
-        function App() {
-            //** useState() 기본 사용 **
-            // const data = React.useState(0);
-            // console.log(data);
-            // 이렇게 할 경우, [0, ƒ] 의 리스트가 생성됨
-            // 0 는 data 의 값이고, f 는 값에 사용할 수 있는 함수
-            // const data = React.useState(); ()안에 변수 초깃값 입력, 비어 있으면 undefined,  
-
-            // ** javascript 에서 편하게 배열 값 변수에 담기
-            // 보통 [값, set변경값] 형태로 이름을 지어주고 아래 형태로 사용. const 사용 가능.
-            const [counter, setCounter] = React.useState(0);
-            const onClick = () => {
-                setCounter(counter+1);
-            }
-
-            return(
-            <div>
-                <div>Click count : {counter}</div>
-                <button onClick={onClick}>Up</button>
-            </div>                
-        );
+    const root = document.getElementById("root");
+    function App() {
+        const [amount, setAmount] = React.useState(0);
+        const [flipped, setFlipped] = React.useState(false);
+        const onChange = (event) => {
+            setAmount(event.target.value);
+            // console.log(event) event 를 찍어보면 event.target.value 에 입력값을 볼 수 있음
         }
-        
-        ReactDOM.render(<App/>, root);
-    </script>
+        const reset = () => setAmount(0);
+        const onFlip = () => {
+            reset();
+            setFlipped((current) => !current); 
+        }
+        return (
+            <div>
+                <div className="">Super Converter</div>
+                <div>
+                    <label htmlFor="minutes">Minutes</label>
+                    <input
+                        value={flipped ? amount * 60 : amount}
+                        id="minutes"
+                        placeholder="Minutes"
+                        type="number"
+                        onChange={onChange}
+                        disabled={flipped}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="hours">Hours</label>
+                    <input 
+                        value={flipped ? amount : Math.round(amount / 60)}
+                        id="hours" 
+                        placeholder="Hours" 
+                        type="number" 
+                        disabled={!flipped}
+                        onChange={onChange}
+                    />
+                </div>
+                <button onClick={reset}>reset</button>
+                <button onClick={onFlip}>onFlip</button>
+            </div>
+        );
+
+    }
+
+    ReactDOM.render(<App />, root);
+</script>
 
 </html>
